@@ -88,13 +88,23 @@ const Pomodoro = () => {
 
   // Function to handle changes in Session Length
   const handleSessionIncrement = () => {
-    setSessionLength((prev) => validateLength(prev + 1)); //
-    setTimeLeft((prev) => prev + 60); // Add 60s to the current time
+    const newSessionLength = validateLength(sessionLength + 1); // Increment session length (max: 60)
+    setSessionLength(newSessionLength);
+
+    if (!isRunning) {
+      // Only update timeLeft if the timer is not running
+      setTimeLeft(newSessionLength * 60);
+    }
   };
 
   const handleSessionDecrement = () => {
-    setSessionLength((prev) => validateLength(prev - 1));
-    setTimeLeft((prev) => prev - 60); // Subtract 60s from the current time
+    const newSessionLength = validateLength(sessionLength - 1); // Decrement session length (min: 1)
+    setSessionLength(newSessionLength);
+
+    if (!isRunning) {
+      // Only update timeLeft if the timer is not running
+      setTimeLeft(newSessionLength * 60);
+    }
   };
 
   return (
