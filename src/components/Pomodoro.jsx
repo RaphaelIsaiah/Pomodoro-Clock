@@ -1,9 +1,18 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { formatTime, validateLength } from "../utils/helper";
+import { formatTime } from "../utils/helper";
 import TimerDisplay from "./TimerDisplay";
 import TimerControls from "./TimerControls";
 import LengthControls from "./LengthControls";
 import beepSound from "../assets/beepSound.wav";
+import {
+  switchTimer,
+  resetTimer,
+  toggleTimer,
+  handleBreakDecrement,
+  handleBreakIncrement,
+  handleSessionDecrement,
+  handleSessionIncrement,
+} from "../utils/timerLogic";
 
 const Pomodoro = () => {
   // State Variables
@@ -19,20 +28,16 @@ const Pomodoro = () => {
   // Reference the audio element for the beep sound
   const audioRef = useRef(null);
 
-  // Function to switch between "Session" and "Break"
-  const switchTimer = useCallback(() => {
-    if (timerLabel === "Session") {
-      // Switch to Break
-      setTimerLabel("Break");
-      setTimeLeft(breakLength * 60);
-    } else {
-      // Switch to Session
-      setTimerLabel("Session");
-      setTimeLeft(sessionLength * 60);
-    }
-
-    // Play beepSound when timer switches
-    audioRef.current.play();
+  // Memoized switchTimer function
+  const memoizedSwitchTimer = useCallback(() => {
+    switchTimer(
+      timerLabel,
+      sessionLength,
+      breakLength,
+      setTimerLabel,
+      setTimeLeft,
+      audioRef
+    );
   }, [timerLabel, sessionLength, breakLength]);
 
   // UseEffect for Timer Logic
@@ -43,7 +48,7 @@ const Pomodoro = () => {
         setTimeLeft((prevTime) => {
           if (prevTime === 0) {
             // if time reaches 0, switch between session and break
-            switchTimer();
+            memoizedSwitchTimer();
             // keep the time at 0 temporarily
             return prevTime;
           }
@@ -58,62 +63,24 @@ const Pomodoro = () => {
 
     // Cleanup: Clear the interval when the component unmounts or isRunning changes
     return () => clearInterval(intervalRef.current);
-  }, [isRunning, switchTimer]); // Re-run effect when isRunning changes
-
-  // Function to reset the timer
-  const resetTimer = () => {
-    // reset all state variables to their default values
-    setBreakLength(5);
-    setSessionLength(25);
-    setTimerLabel("Session");
-    setTimeLeft(25 * 60);
-    setIsRunning(false);
-    // Stop and reset beepSound
-    audioRef.current.pause();
-    audioRef.current.currentTime = 0;
-  };
-
-  // Function to Start and Stop the Timer
-  const handleStartStop = () => {
-    setIsRunning((prev) => !prev); // Toggle isRunning value between True and False
-  };
-
-  // Function to handle changes in Break Length
-  const handleBreakIncrement = () => {
-    setBreakLength((prev) => validateLength(prev + 1));
-  };
-  const handleBreakDecrement = () => {
-    setBreakLength((prev) => validateLength(prev - 1));
-  };
-
-  // Function to handle changes in Session Length
-  const handleSessionIncrement = () => {
-    const newSessionLength = validateLength(sessionLength + 1); // Increment session length (max: 60)
-    setSessionLength(newSessionLength);
-
-    if (!isRunning) {
-      // Only update timeLeft if the timer is not running
-      setTimeLeft(newSessionLength * 60);
-    }
-  };
-
-  const handleSessionDecrement = () => {
-    const newSessionLength = validateLength(sessionLength - 1); // Decrement session length (min: 1)
-    setSessionLength(newSessionLength);
-
-    if (!isRunning) {
-      // Only update timeLeft if the timer is not running
-      setTimeLeft(newSessionLength * 60);
-    }
-  };
+  }, [isRunning, memoizedSwitchTimer]); // Re-run effect when isRunning and memoizedSwitchTimer changes
 
   return (
     <div>
       <TimerDisplay timerLabel={timerLabel} timeLeft={formatTime(timeLeft)} />
 
       <TimerControls
-        onStartStop={handleStartStop}
-        onReset={resetTimer}
+        onStartStop={() => toggleTimer(setIsRunning)}
+        onReset={() =>
+          resetTimer(
+            setBreakLength,
+            setSessionLength,
+            setTimerLabel,
+            setTimeLeft,
+            setIsRunning,
+            audioRef
+          )
+        }
         isRunning={isRunning}
       />
 
@@ -121,15 +88,33 @@ const Pomodoro = () => {
       <LengthControls
         label={"Break"}
         length={breakLength}
-        onIncrement={handleBreakIncrement}
-        onDecrement={handleBreakDecrement}
+        onIncrement={() =>
+          handleBreakIncrement(breakLength, setBreakLength, isRunning)
+        }
+        onDecrement={() =>
+          handleBreakDecrement(breakLength, setBreakLength, isRunning)
+        }
       />
       {/* Session length controls */}
       <LengthControls
         label={"Session"}
         length={sessionLength}
-        onIncrement={handleSessionIncrement}
-        onDecrement={handleSessionDecrement}
+        onIncrement={() =>
+          handleSessionIncrement(
+            sessionLength,
+            setSessionLength,
+            isRunning,
+            setTimeLeft
+          )
+        }
+        onDecrement={() =>
+          handleSessionDecrement(
+            sessionLength,
+            setSessionLength,
+            isRunning,
+            setTimeLeft
+          )
+        }
       />
 
       <audio src={beepSound} id="beep" ref={audioRef}></audio>
