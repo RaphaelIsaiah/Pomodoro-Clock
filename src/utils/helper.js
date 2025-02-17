@@ -5,7 +5,7 @@ export const formatTime = (timeInSeconds) => {
   // Find the remaining seconds after full minutes are counted
   const seconds = timeInSeconds % 60;
   // Return a string and ensure that it is always at least 2 digits long, adding a zero if necessary
-  return `${minutes.toString().padStart(2, "0")} : ${seconds
+  return `${minutes.toString().padStart(2, "0")}:${seconds
     .toString()
     .padStart(2, "0")}`;
 };
