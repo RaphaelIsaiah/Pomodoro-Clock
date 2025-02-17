@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const LengthControls = ({ label, length, onIncrement, onDecrement }) => {
   return (
     <div>
-      <div id={`${label.toLowerCase()}-length`}>{label} Length</div>
+      <div id={`${label.toLowerCase()}-label`}>{label} Length</div>
       <button id={`${label.toLowerCase()}-decrement`} onClick={onDecrement}>
         -
       </button>
