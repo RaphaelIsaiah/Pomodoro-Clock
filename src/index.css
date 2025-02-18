@@ -3,20 +3,22 @@
 
 @theme {
   --font-one: "Edu AU VIC WA NT Pre", serif;
+  --shadow-4xl: 0px 2px 4px 3px black;
 }
 
 @media (max-width: 340px) {
-  .timer,
-  .length {
-    flex-direction: column;
-  }
-  .timer-content,
-  .length-controls {
-    width: 100%;
-  }
   .app {
     padding: 0;
     font-size: clamp(0.8rem, 4vw, 0.9rem);
+  }
+
+  .timer {
+    flex-wrap: wrap-reverse;
+  }
+
+  .timer-content,
+  .length-controls {
+    width: 100%;
   }
 
   .heading {

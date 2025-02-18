@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Handle the Start/Pause and Reset Buttons
 const TimerControls = ({ onStartStop, onReset, isRunning }) => {
   return (
-    <div className="bg-cyan-400 rounded p-1 flex gap-3 justify-center">
+    <div className="bg-cyan-400 rounded p-1 flex gap-4 justify-center">
       <button
         id="start_stop"
         onClick={onStartStop}
