@@ -66,58 +66,64 @@ const Pomodoro = () => {
   }, [isRunning, memoizedSwitchTimer]); // Re-run effect when isRunning and memoizedSwitchTimer changes
 
   return (
-    <div>
-      <TimerDisplay timerLabel={timerLabel} timeLeft={formatTime(timeLeft)} />
+    <div className="pomodoro bg-cyan-800 w-full max-w-2xl rounded p-5">
+      <div className="bg-red-500 rounded p-2 mb-2 ">
+        <TimerDisplay timerLabel={timerLabel} timeLeft={formatTime(timeLeft)} />
+      </div>
 
-      <TimerControls
-        onStartStop={() => toggleTimer(setIsRunning)}
-        onReset={() =>
-          resetTimer(
-            setBreakLength,
-            setSessionLength,
-            setTimerLabel,
-            setTimeLeft,
-            setIsRunning,
-            audioRef
-          )
-        }
-        isRunning={isRunning}
-      />
+      <div className="bg-gray-300 p-2 rounded mb-2">
+        <TimerControls
+          onStartStop={() => toggleTimer(setIsRunning)}
+          onReset={() =>
+            resetTimer(
+              setBreakLength,
+              setSessionLength,
+              setTimerLabel,
+              setTimeLeft,
+              setIsRunning,
+              audioRef
+            )
+          }
+          isRunning={isRunning}
+        />
+      </div>
 
-      {/* Break length controls */}
-      <LengthControls
-        label={"Break"}
-        length={breakLength}
-        onIncrement={() =>
-          handleBreakIncrement(breakLength, setBreakLength, isRunning)
-        }
-        onDecrement={() =>
-          handleBreakDecrement(breakLength, setBreakLength, isRunning)
-        }
-      />
-      {/* Session length controls */}
-      <LengthControls
-        label={"Session"}
-        length={sessionLength}
-        onIncrement={() =>
-          handleSessionIncrement(
-            sessionLength,
-            setSessionLength,
-            isRunning,
-            setTimeLeft
-          )
-        }
-        onDecrement={() =>
-          handleSessionDecrement(
-            sessionLength,
-            setSessionLength,
-            isRunning,
-            setTimeLeft
-          )
-        }
-      />
+      <div className="bg-amber-300 rounded p-2 flex flex-col gap-2">
+        {/* Break length controls */}
+        <LengthControls
+          label={"Break"}
+          length={breakLength}
+          onIncrement={() =>
+            handleBreakIncrement(breakLength, setBreakLength, isRunning)
+          }
+          onDecrement={() =>
+            handleBreakDecrement(breakLength, setBreakLength, isRunning)
+          }
+        />
+        {/* Session length controls */}
+        <LengthControls
+          label={"Session"}
+          length={sessionLength}
+          onIncrement={() =>
+            handleSessionIncrement(
+              sessionLength,
+              setSessionLength,
+              isRunning,
+              setTimeLeft
+            )
+          }
+          onDecrement={() =>
+            handleSessionDecrement(
+              sessionLength,
+              setSessionLength,
+              isRunning,
+              setTimeLeft
+            )
+          }
+        />
 
-      <audio src={beepSound} id="beep" ref={audioRef}></audio>
+        <audio src={beepSound} id="beep" ref={audioRef}></audio>
+      </div>
     </div>
   );
 };

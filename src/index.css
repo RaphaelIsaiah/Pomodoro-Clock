@@ -1,6 +1,32 @@
-.app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem auto;
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-one: "Edu AU VIC WA NT Pre", serif;
+}
+
+@media (max-width: 340px) {
+  .timer,
+  .length {
+    flex-direction: column;
+  }
+  .timer-content,
+  .length-controls {
+    width: 100%;
+  }
+  .app {
+    padding: 0;
+    font-size: clamp(0.8rem, 4vw, 0.9rem);
+  }
+
+  .heading {
+    font-size: clamp(1.3rem, 5vw, 1.5rem);
+    line-height: 2rem;
+  }
+
+  .pomodoro {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    border-radius: 0;
+  }
 }
