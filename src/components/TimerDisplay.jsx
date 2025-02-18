@@ -5,20 +5,14 @@ const TimerDisplay = ({ timerLabel, timeLeft }) => {
   return (
     <div
       id="timer"
-      className="timer bg-emerald-400 rounded p-1 flex gap-2 justify-center"
+      className="timer bg-emerald-300 rounded-xl p-1 flex flex-wrap gap-2 justify- shadow-3xl font-bold"
     >
-      <div
-        id="time-left"
-        className="timer-content bg-fuchsia-400 p-2 rounded w-1/3"
-      >
-        {timeLeft}
+      <div id="timer-label" className="timer-content p-2 rounded w-3/5">
+        {timerLabel}
       </div>
 
-      <div
-        id="timer-label"
-        className="timer-content bg-fuchsia-600 p-2 rounded w-3/5"
-      >
-        {timerLabel}
+      <div id="time-left" className="timer-content p-2 rounded w-1/3">
+        {timeLeft}
       </div>
     </div>
   );

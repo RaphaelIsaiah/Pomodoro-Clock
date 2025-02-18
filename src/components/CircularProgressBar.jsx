@@ -13,7 +13,6 @@ const CircularProgressBar = ({ percentage }) => {
         textColor: "#f88",
         trailColor: "#d6d6d6",
         backgroundColor: "#3e98c7",
-        boxShadow: "0px 2px 4px 2px black",
       })}
     />
   );

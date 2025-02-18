@@ -3,17 +3,18 @@
 
 @theme {
   --font-one: "Edu AU VIC WA NT Pre", serif;
+  --shadow-3xl: 0px 2px 10px 2px black;
   --shadow-4xl: 0px 2px 4px 3px black;
+}
+
+.t-shadow {
+  text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 340px) {
   .app {
     padding: 0;
     font-size: clamp(0.8rem, 4vw, 0.9rem);
-  }
-
-  .timer {
-    flex-wrap: wrap-reverse;
   }
 
   .timer-content,
@@ -25,7 +26,6 @@
     font-size: clamp(1.3rem, 5vw, 1.5rem);
     line-height: 2rem;
   }
-
   .pomodoro {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
