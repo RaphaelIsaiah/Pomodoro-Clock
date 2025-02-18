@@ -9,13 +9,13 @@ const TimerDisplay = ({ timerLabel, timeLeft }) => {
     >
       <div
         id="timer-label"
-        className="timer-content bg-fuchsia-800 p-2 rounded w-3/5"
+        className="timer-content bg-fuchsia-600 p-2 rounded w-3/5"
       >
         {timerLabel}
       </div>
       <div
         id="time-left"
-        className="timer-content bg-fuchsia-500 p-2 rounded w-1/3"
+        className="timer-content bg-fuchsia-400 p-2 rounded w-1/3"
       >
         {timeLeft}
       </div>

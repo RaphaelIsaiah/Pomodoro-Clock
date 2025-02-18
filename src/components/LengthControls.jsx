@@ -15,13 +15,13 @@ const LengthControls = ({ label, length, onIncrement, onDecrement }) => {
 
       <div className="length-controls bg-gray-400 rounded p-2 w-1/3">
         <button id={`${label.toLowerCase()}-decrement`} onClick={onDecrement}>
-          <FontAwesomeIcon icon={faCaretUp} />
+          <FontAwesomeIcon icon={faCaretDown} />
         </button>
         <span id={`${label.toLowerCase()}-length`} className="px-2">
           {length}
         </span>
         <button id={`${label.toLowerCase()}-increment`} onClick={onIncrement}>
-          <FontAwesomeIcon icon={faCaretDown} />
+          <FontAwesomeIcon icon={faCaretUp} />
         </button>
       </div>
     </div>
