@@ -13,6 +13,7 @@ import {
   handleSessionDecrement,
   handleSessionIncrement,
 } from "../utils/timerLogic";
+import CircularProgressBar from "./CircularProgressBar";
 
 const Pomodoro = () => {
   // State Variables
@@ -65,13 +66,21 @@ const Pomodoro = () => {
     return () => clearInterval(intervalRef.current);
   }, [isRunning, memoizedSwitchTimer]); // Re-run effect when isRunning and memoizedSwitchTimer changes
 
+  // Calculate percentage for Circular Progress Bar
+  const percentage =
+    ((sessionLength * 60 - timeLeft) / (sessionLength * 60)) * 100;
+
   return (
-    <div className="pomodoro bg-cyan-800 w-full max-w-2xl rounded p-5">
-      <div className="bg-red-500 rounded p-2 mb-2 ">
+    <div className="pomodoro bg-ivory w-full max-w-2xl rounded p-5 shadow-4xl ">
+      <div className="mb-2">
         <TimerDisplay timerLabel={timerLabel} timeLeft={formatTime(timeLeft)} />
       </div>
 
-      <div className="bg-gray-300 p-2 rounded mb-2">
+      <div className="p-2 rounded mb-2">
+        <div className="w-2/5 sm:w-1/3 mx-auto mb-4 shadow-3xl rounded-full cn-shadow font-two font-semibold border-none outline-1  ">
+          <CircularProgressBar percentage={percentage} />
+        </div>
+
         <TimerControls
           onStartStop={() => toggleTimer(setIsRunning)}
           onReset={() =>
@@ -88,7 +97,7 @@ const Pomodoro = () => {
         />
       </div>
 
-      <div className="bg-amber-300 rounded p-2 flex flex-col gap-2">
+      <div className="flex flex-col gap-2">
         {/* Break length controls */}
         <LengthControls
           label={"Break"}
@@ -124,6 +133,9 @@ const Pomodoro = () => {
 
         <audio src={beepSound} id="beep" ref={audioRef}></audio>
       </div>
+
+      {/* Add CircularProgressBar Component */}
+      <div className=""></div>
     </div>
   );
 };

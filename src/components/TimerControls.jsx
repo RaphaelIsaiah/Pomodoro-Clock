@@ -9,11 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Handle the Start/Pause and Reset Buttons
 const TimerControls = ({ onStartStop, onReset, isRunning }) => {
   return (
-    <div className="bg-cyan-400 rounded p-1 flex gap-3 justify-center">
+    <div className="p-1 flex gap-4 justify-center ">
       <button
         id="start_stop"
         onClick={onStartStop}
-        className="bg-amber-600 rounded w-2/5 p-2"
+        className="bg-gold rounded-full w-2/5 p-2 transition-all duration-150 ease-in-out hover:bg-pewter
+         hover:text-[1.1rem] shadow-4xl"
       >
         {isRunning ? (
           <FontAwesomeIcon icon={faPause} />
@@ -24,7 +25,7 @@ const TimerControls = ({ onStartStop, onReset, isRunning }) => {
       <button
         id="reset"
         onClick={onReset}
-        className="bg-amber-500 rounded w-2/5 p-2"
+        className="bg-gold rounded-full w-2/5 p-2 transition-all duration-150 ease-in-out hover:bg-pewter hover:text-[1.1rem] shadow-4xl"
       >
         <FontAwesomeIcon icon={faRotateRight} />
       </button>
