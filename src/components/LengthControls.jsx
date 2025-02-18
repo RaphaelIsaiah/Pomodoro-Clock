@@ -6,18 +6,22 @@ import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 const LengthControls = ({ label, length, onIncrement, onDecrement }) => {
   return (
     <div
-      className="length bg-black text-gold rounded gap-2 flex flex-wrap p-1
+      className="length bg-black text-gold rounded flex flex-wrap p-1
     items-center justify-evenly shadow-3xl"
     >
       <div
         id={`${label.toLowerCase()}-label`}
-        className="length-controls py-2 px-1 w-3/5 font-three font-extrabold"
+        className="length-controls py-2 px-1 w-3xs font-three font-extrabold"
       >
         {label} Length
       </div>
 
-      <div className="length-controls p-2 w-1/3">
-        <button id={`${label.toLowerCase()}-decrement`} onClick={onDecrement}>
+      <div className="length-controls p-2 w-2/5">
+        <button
+          id={`${label.toLowerCase()}-decrement`}
+          onClick={onDecrement}
+          className="outline-none hover:text-ivory"
+        >
           <FontAwesomeIcon icon={faCaretDown} />
         </button>
         <span
@@ -26,7 +30,11 @@ const LengthControls = ({ label, length, onIncrement, onDecrement }) => {
         >
           {length}
         </span>
-        <button id={`${label.toLowerCase()}-increment`} onClick={onIncrement}>
+        <button
+          id={`${label.toLowerCase()}-increment`}
+          onClick={onIncrement}
+          className="outline-none hover:text-ivory"
+        >
           <FontAwesomeIcon icon={faCaretUp} />
         </button>
       </div>

@@ -13,7 +13,7 @@ const TimerControls = ({ onStartStop, onReset, isRunning }) => {
       <button
         id="start_stop"
         onClick={onStartStop}
-        className="bg-gold rounded-full w-2/5 p-2 transition-all duration-150 ease-in-out hover:bg-pewter
+        className="bg-gold rounded-full w-2/5 p-2 outline-none transition-all duration-150 ease-in-out hover:bg-pewter
          hover:text-[1.1rem] shadow-4xl"
       >
         {isRunning ? (
