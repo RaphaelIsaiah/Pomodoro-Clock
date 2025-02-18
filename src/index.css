@@ -15,7 +15,7 @@
 }
 
 .cn-shadow {
-  text-shadow: 2px 5px 4px rgba(5, 7, 7, 0.5);
+  text-shadow: 0px 0px 4px rgba(5, 7, 7, 0.5);
 }
 
 .heading {
@@ -33,13 +33,7 @@
     width: 100%;
   }
 
-  .cn-shadow {
-    width: 45%;
-    font-weight: bold;
-  }
-
-  .heading,
-  .cn-shadow {
+  .heading {
     font-size: clamp(1.5rem, 5vw, 1.7rem);
     line-height: 2rem;
   }

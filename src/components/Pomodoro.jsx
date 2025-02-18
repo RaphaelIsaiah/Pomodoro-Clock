@@ -77,7 +77,7 @@ const Pomodoro = () => {
       </div>
 
       <div className="p-2 rounded mb-2">
-        <div className="w-2/5 sm:w-1/3 mx-auto mb-4 shadow-3xl rounded-full cn-shadow font-two font-semibold border-none outline-1  ">
+        <div className="w-4/5 mx-auto flex justify-center items-center mb-4 cn-shadow font-two font-semibold border-none ">
           <CircularProgressBar percentage={percentage} />
         </div>
 

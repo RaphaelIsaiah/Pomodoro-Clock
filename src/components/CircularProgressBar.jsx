@@ -1,20 +1,50 @@
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 
 const CircularProgressBar = ({ percentage }) => {
+  const radius = 50; // Radius of the circle
+  const circumference = 2 * Math.PI * radius; // Total circumference
+  const strokeDashoffset = circumference - (circumference * percentage) / 100;
+
   return (
-    <CircularProgressbar
-      value={percentage}
-      text={`${percentage.toFixed(0)}%`}
-      strokeWidth={6}
-      styles={buildStyles({
-        pathColor: `rgba(5, 7, 7, ${percentage / 50})`,
-        textColor: "#050707",
-        trailColor: "#7F7F7F",
-        backgroundColor: "#7F7F7F",
-      })}
-    />
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      {/* Background Circle */}
+      <circle
+        cx="60"
+        cy="60"
+        r={radius}
+        stroke="#7F7F7F"
+        strokeWidth="6"
+        fill="transparent"
+      />
+
+      {/* Animated Progress Circle */}
+      <motion.circle
+        cx="60"
+        cy="60"
+        r={radius}
+        stroke="rgba(5, 7, 7, 1)"
+        strokeWidth="6"
+        fill="transparent"
+        strokeDasharray={circumference}
+        strokeDashoffset={circumference}
+        animate={{ strokeDashoffset }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        transform="rotate(270, 60, 60)"
+      />
+
+      {/* Percentage Text */}
+      <text
+        x="60"
+        y="65"
+        fontSize="18"
+        fontWeight="bold"
+        textAnchor="middle"
+        fill="#050707"
+      >
+        {percentage.toFixed(0)}%
+      </text>
+    </svg>
   );
 };
 
