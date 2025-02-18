@@ -5,10 +5,13 @@ import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 // Handle the Break and Session Length Controls
 const LengthControls = ({ label, length, onIncrement, onDecrement }) => {
   return (
-    <div className="length bg-black text-gold rounded gap-2 flex flex-wrap items-center justify-center shadow-3xl">
+    <div
+      className="length bg-black text-gold rounded gap-2 flex flex-wrap p-1
+    items-center justify-evenly shadow-3xl"
+    >
       <div
         id={`${label.toLowerCase()}-label`}
-        className="length-controls py-2 px-1 w-3/5"
+        className="length-controls py-2 px-1 w-3/5 font-three font-extrabold"
       >
         {label} Length
       </div>
@@ -17,7 +20,10 @@ const LengthControls = ({ label, length, onIncrement, onDecrement }) => {
         <button id={`${label.toLowerCase()}-decrement`} onClick={onDecrement}>
           <FontAwesomeIcon icon={faCaretDown} />
         </button>
-        <span id={`${label.toLowerCase()}-length`} className="px-3">
+        <span
+          id={`${label.toLowerCase()}-length`}
+          className="px-3 font-two font-bold"
+        >
           {length}
         </span>
         <button id={`${label.toLowerCase()}-increment`} onClick={onIncrement}>

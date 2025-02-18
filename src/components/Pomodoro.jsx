@@ -71,13 +71,13 @@ const Pomodoro = () => {
     ((sessionLength * 60 - timeLeft) / (sessionLength * 60)) * 100;
 
   return (
-    <div className="pomodoro bg-ivory w-full max-w-2xl rounded p-5 shadow-4xl">
+    <div className="pomodoro bg-ivory w-full max-w-2xl rounded p-5 shadow-4xl ">
       <div className="mb-2">
         <TimerDisplay timerLabel={timerLabel} timeLeft={formatTime(timeLeft)} />
       </div>
 
       <div className="p-2 rounded mb-2">
-        <div className="w-2/5 sm:w-1/3 mx-auto mb-4 shadow-3xl rounded-full t-shadow">
+        <div className="w-2/5 sm:w-1/3 mx-auto mb-4 shadow-3xl rounded-full cn-shadow font-two font-semibold border-none outline-1  ">
           <CircularProgressBar percentage={percentage} />
         </div>
 
