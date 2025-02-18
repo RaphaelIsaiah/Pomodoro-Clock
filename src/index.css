@@ -33,11 +33,6 @@
     width: 100%;
   }
 
-  .length,
-  .timer {
-    gap: 0;
-  }
-
   .cn-shadow {
     width: 45%;
     font-weight: bold;
