@@ -9,10 +9,10 @@ const CircularProgressBar = ({ percentage }) => {
       text={`${percentage.toFixed(0)}%`}
       strokeWidth={6}
       styles={buildStyles({
-        pathColor: `rgba(62, 152, 199, ${percentage / 100})`,
-        textColor: "#f88",
-        trailColor: "#d6d6d6",
-        backgroundColor: "#3e98c7",
+        pathColor: `rgba(5, 7, 7, ${percentage / 50})`,
+        textColor: "#050707",
+        trailColor: "#7F7F7F",
+        backgroundColor: "#D4BBDD",
       })}
     />
   );

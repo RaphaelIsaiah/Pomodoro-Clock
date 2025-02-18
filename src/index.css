@@ -3,12 +3,19 @@
 
 @theme {
   --font-one: "Edu AU VIC WA NT Pre", serif;
-  --shadow-3xl: 0px 2px 10px 2px black;
-  --shadow-4xl: 0px 2px 4px 3px black;
+  --shadow-3xl: 0px 2px 10px 2px #050707;
+  --shadow-4xl: 0px 2px 4px 3px #050707;
+  --color-*: initial;
+  --color-pewter: #7f7f7f;
+  --color-gold: #f4d800;
+  --color-black: #050707;
+  --color-ivory: #ecf1f2;
 }
 
 .t-shadow {
-  text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 5px 4px rgba(0, 0, 0, 0.5);
+  /* color: rgb(249, 232, 48); */
+  /* color: rgb(5, 7, 7); */
 }
 
 @media (max-width: 340px) {

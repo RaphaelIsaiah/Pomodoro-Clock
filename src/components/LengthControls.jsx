@@ -5,7 +5,7 @@ import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 // Handle the Break and Session Length Controls
 const LengthControls = ({ label, length, onIncrement, onDecrement }) => {
   return (
-    <div className="length bg-green-300 rounded gap-2 flex flex-wrap items-center justify-center shadow-3xl">
+    <div className="length bg-black text-gold rounded gap-2 flex flex-wrap items-center justify-center shadow-3xl">
       <div
         id={`${label.toLowerCase()}-label`}
         className="length-controls py-2 px-1 w-3/5"

@@ -13,7 +13,8 @@ const TimerControls = ({ onStartStop, onReset, isRunning }) => {
       <button
         id="start_stop"
         onClick={onStartStop}
-        className="bg-amber-600 rounded-full w-2/5 p-2 transition-all duration-150 ease-in-out hover:bg-amber-50 hover:text-sm shadow-4xl"
+        className="bg-gold rounded-full w-2/5 p-2 transition-all duration-150 ease-in-out hover:bg-pewter
+         hover:text-sm shadow-4xl"
       >
         {isRunning ? (
           <FontAwesomeIcon icon={faPause} />
@@ -24,7 +25,7 @@ const TimerControls = ({ onStartStop, onReset, isRunning }) => {
       <button
         id="reset"
         onClick={onReset}
-        className="bg-amber-500 rounded-full w-2/5 p-2 transition-all duration-150 ease-in-out hover:bg-amber-50 hover:text-sm shadow-4xl"
+        className="bg-gold rounded-full w-2/5 p-2 transition-all duration-150 ease-in-out hover:bg-pewter hover:text-sm shadow-4xl"
       >
         <FontAwesomeIcon icon={faRotateRight} />
       </button>
