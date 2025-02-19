@@ -108,6 +108,8 @@ const Pomodoro = () => {
           onDecrement={() =>
             handleBreakDecrement(breakLength, setBreakLength, isRunning)
           }
+          onSetLength={(newLength) => setBreakLength(newLength)}
+          isRunning={isRunning}
         />
         {/* Session length controls */}
         <LengthControls
@@ -129,6 +131,11 @@ const Pomodoro = () => {
               setTimeLeft
             )
           }
+          onSetLength={(newLength) => {
+            setSessionLength(newLength);
+            setTimeLeft(newLength * 60); // Update the timer display accordingly
+          }}
+          isRunning={isRunning}
         />
 
         <audio src={beepSound} id="beep" ref={audioRef}></audio>
