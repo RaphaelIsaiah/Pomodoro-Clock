@@ -76,7 +76,7 @@ const LengthControls = ({
         {label} Length
       </div>
 
-      <div className="length-controls p-2 w-2/5">
+      <div className="length-controls p-2 w-2/5 flex items-center justify-center">
         <button
           id={`${label.toLowerCase()}-decrement`}
           onMouseDown={() => handleMouseDown(onDecrement)}
