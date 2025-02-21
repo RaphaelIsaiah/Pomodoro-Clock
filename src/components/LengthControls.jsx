@@ -1,7 +1,7 @@
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect, useRef } from "react";
 
 // Handle the Break and Session Length Controls
 const LengthControls = ({
@@ -12,12 +12,12 @@ const LengthControls = ({
   onSetLength,
   isRunning,
 }) => {
-  const [inputValue, setInputValue] = useState(length);
+  const [inputValue, setInputValue] = useState(length.toString());
   const intervalIdRef = useRef(null);
 
   // Sync inputValue with length when it changes in parent
   useEffect(() => {
-    setInputValue(length);
+    setInputValue(length.toString());
   }, [length]);
 
   // Update input value as user types; allow only numbers and clamp to 60
@@ -47,7 +47,7 @@ const LengthControls = ({
     let newLength = parseInt(inputValue, 10);
     if (isNaN(newLength) || newLength < 1) newLength = 1;
     if (newLength > 60) newLength = 60;
-    setInputValue(newLength);
+    setInputValue(newLength.toString());
     onSetLength(newLength);
   };
 
@@ -68,7 +68,10 @@ const LengthControls = ({
   };
 
   return (
-    <div className="length bg-black text-gold rounded flex flex-wrap p-1 items-center justify-evenly shadow-3xl">
+    <div
+      className="length bg-black text-gold rounded flex flex-wrap p-1 items-center
+    justify-evenly shadow-3xl"
+    >
       <div
         id={`${label.toLowerCase()}-label`}
         className="length-controls py-2 px-1 w-3xs font-three font-extrabold"
@@ -87,11 +90,13 @@ const LengthControls = ({
           <FontAwesomeIcon icon={faCaretDown} />
         </button>
         <input
+          id={`${label.toLowerCase()}-length`}
           type="text"
           value={inputValue}
           onChange={handleChange}
           onBlur={handleBlur}
-          className="mx-2 text-center w-12 bg-transparent border-none outline-none font-two font-bold"
+          className="mx-2 text-center w-12 bg-transparent border-none outline-none
+          font-two font-bold"
           disabled={isRunning}
         />
         <button
