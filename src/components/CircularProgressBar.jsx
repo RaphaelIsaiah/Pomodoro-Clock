@@ -40,7 +40,7 @@ const CircularProgressBar = ({ percentage }) => {
       <text
         x="60"
         y="65"
-        fontSize="18"
+        fontSize="24"
         fontWeight="bold"
         textAnchor="middle"
         fill="#050707"

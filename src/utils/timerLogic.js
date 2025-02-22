@@ -60,7 +60,6 @@ export const handleBreakIncrement = (
     // setBreakLength((prev) => validateLength(prev + 1));
     const newBreakLength = validateLength(breakLength + 1);
     setBreakLength(newBreakLength);
-    console.log("Break incremented:", newBreakLength);
   }
 };
 export const handleBreakDecrement = (
@@ -73,7 +72,6 @@ export const handleBreakDecrement = (
     // setBreakLength((prev) => validateLength(prev - 1));
     const newBreakLength = validateLength(breakLength - 1);
     setBreakLength(newBreakLength);
-    console.log("Break decremented:", newBreakLength);
   }
 };
 
@@ -93,7 +91,6 @@ export const handleSessionIncrement = (
     if (timerLabel === "Session") {
       // Only update timeLeft when the timer is not running.
       setTimeLeft(newSessionLength * 60);
-      console.log("Session incremented:", newSessionLength);
     }
   }
 };
@@ -113,7 +110,6 @@ export const handleSessionDecrement = (
     if (timerLabel === "Session") {
       // Only update timeLeft when the timer is not running.
       setTimeLeft(newSessionLength * 60);
-      console.log("Session decremented:", newSessionLength);
     }
   }
 };

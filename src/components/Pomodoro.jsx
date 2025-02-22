@@ -66,20 +66,6 @@ const Pomodoro = () => {
     return () => clearInterval(intervalRef.current);
   }, [isRunning, memoizedSwitchTimer]); // Re-run effect when isRunning and memoizedSwitchTimer changes
 
-  // Update timeLeft when sessionLength changes and timer is not running and it's during Session
-  useEffect(() => {
-    if (!isRunning && timerLabel === "Session") {
-      setTimeLeft(sessionLength * 60);
-    }
-  }, [sessionLength, isRunning, timerLabel]);
-
-  // Update timeLeft when breakLength changes and timer is not running and it's during Break
-  useEffect(() => {
-    if (!isRunning && timerLabel === "Break") {
-      setTimeLeft(breakLength * 60);
-    }
-  }, [breakLength, isRunning, timerLabel]);
-
   // Calculate percentage for Circular Progress Bar
   const totalTime =
     timerLabel === "Session" ? sessionLength * 60 : breakLength * 60;

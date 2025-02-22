@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +13,7 @@ const LengthControls = ({
   isRunning,
 }) => {
   const [inputValue, setInputValue] = useState(length.toString());
-  const intervalIdRef = useRef(null);
+  // const intervalIdRef = useRef(null);
 
   // Sync inputValue with length when it changes in parent
   useEffect(() => {
@@ -52,20 +52,20 @@ const LengthControls = ({
   };
 
   // Start continuous increment/decrement when the button is held down
-  const handleMouseDown = (callback) => {
-    if (!isRunning) {
-      callback(); // Execute immediately
-      intervalIdRef.current = setInterval(callback, 200);
-    }
-  };
+  // const handleMouseDown = (callback) => {
+  //   if (!isRunning) {
+  //     callback(); // Execute immediately
+  //     intervalIdRef.current = setInterval(callback, 200);
+  //   }
+  // };
 
   // Clear the interval when the button is released or when the mouse leaves
-  const handleMouseUp = () => {
-    if (intervalIdRef.current) {
-      clearInterval(intervalIdRef.current);
-      intervalIdRef.current = null;
-    }
-  };
+  // const handleMouseUp = () => {
+  //   if (intervalIdRef.current) {
+  //     clearInterval(intervalIdRef.current);
+  //     intervalIdRef.current = null;
+  //   }
+  // };
 
   return (
     <div
@@ -82,9 +82,10 @@ const LengthControls = ({
       <div className="length-controls p-2 w-2/5 flex items-center justify-center">
         <button
           id={`${label.toLowerCase()}-decrement`}
-          onMouseDown={() => handleMouseDown(onDecrement)}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          onClick={onDecrement}
+          // onMouseDown={() => handleMouseDown(onDecrement)}
+          // onMouseUp={handleMouseUp}
+          // onMouseLeave={handleMouseUp}
           className="outline-none hover:text-ivory"
         >
           <FontAwesomeIcon icon={faCaretDown} />
@@ -101,9 +102,10 @@ const LengthControls = ({
         />
         <button
           id={`${label.toLowerCase()}-increment`}
-          onMouseDown={() => handleMouseDown(onIncrement)}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          onClick={onIncrement}
+          // onMouseDown={() => handleMouseDown(onIncrement)}
+          // onMouseUp={handleMouseUp}
+          // onMouseLeave={handleMouseUp}
           className="outline-none hover:text-ivory"
         >
           <FontAwesomeIcon icon={faCaretUp} />
