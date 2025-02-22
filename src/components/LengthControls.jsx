@@ -51,41 +51,23 @@ const LengthControls = ({
     onSetLength(newLength);
   };
 
-  // Start continuous increment/decrement when the button is held down
-  // const handleMouseDown = (callback) => {
-  //   if (!isRunning) {
-  //     callback(); // Execute immediately
-  //     intervalIdRef.current = setInterval(callback, 200);
-  //   }
-  // };
-
-  // Clear the interval when the button is released or when the mouse leaves
-  // const handleMouseUp = () => {
-  //   if (intervalIdRef.current) {
-  //     clearInterval(intervalIdRef.current);
-  //     intervalIdRef.current = null;
-  //   }
-  // };
-
   return (
     <div
       className="length bg-black text-gold rounded flex flex-wrap p-1 items-center
     justify-evenly shadow-3xl"
     >
-      <div
+      <label
+        htmlFor={`${label.toLowerCase()}-length`}
         id={`${label.toLowerCase()}-label`}
         className="length-controls py-2 px-1 w-3xs font-three font-extrabold"
       >
         {label} Length
-      </div>
+      </label>
 
       <div className="length-controls p-2 w-2/5 flex items-center justify-center">
         <button
           id={`${label.toLowerCase()}-decrement`}
           onClick={onDecrement}
-          // onMouseDown={() => handleMouseDown(onDecrement)}
-          // onMouseUp={handleMouseUp}
-          // onMouseLeave={handleMouseUp}
           className="outline-none hover:text-ivory"
         >
           <FontAwesomeIcon icon={faCaretDown} />
@@ -93,19 +75,17 @@ const LengthControls = ({
         <input
           id={`${label.toLowerCase()}-length`}
           type="text"
+          name={`${label.toLowerCase()}-length`}
           value={inputValue}
           onChange={handleChange}
           onBlur={handleBlur}
           className="mx-2 text-center w-12 bg-transparent border-none outline-none
-          font-two font-bold"
+          font-two font-bold caret-ivory"
           disabled={isRunning}
         />
         <button
           id={`${label.toLowerCase()}-increment`}
           onClick={onIncrement}
-          // onMouseDown={() => handleMouseDown(onIncrement)}
-          // onMouseUp={handleMouseUp}
-          // onMouseLeave={handleMouseUp}
           className="outline-none hover:text-ivory"
         >
           <FontAwesomeIcon icon={faCaretUp} />
