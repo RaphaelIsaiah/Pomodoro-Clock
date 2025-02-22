@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 const CircularProgressBar = ({ percentage }) => {
   const radius = 50; // Radius of the circle
   const circumference = 2 * Math.PI * radius; // Total circumference
-  const strokeDashoffset = circumference - (circumference * percentage) / 100;
+  // const strokeDashoffset = circumference - (circumference * percentage) / 100;
+  const strokeDashoffset = !isNaN(percentage)
+    ? circumference - (circumference * percentage) / 100
+    : circumference - (circumference * 0) / 100;
 
   return (
     <svg width="120" height="120" viewBox="0 0 120 120">
@@ -37,12 +40,13 @@ const CircularProgressBar = ({ percentage }) => {
       <text
         x="60"
         y="65"
-        fontSize="18"
+        fontSize="24"
         fontWeight="bold"
         textAnchor="middle"
         fill="#050707"
       >
-        {percentage.toFixed(0)}%
+        {/* {percentage.toFixed(0)}% */}
+        {!isNaN(percentage) ? `${percentage.toFixed(0)}%` : `0%`}
       </text>
     </svg>
   );

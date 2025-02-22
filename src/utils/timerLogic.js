@@ -23,7 +23,7 @@ export const switchTimer = (
   audioRef.current.play();
 };
 
-// Functioin to reset the timer
+// Function to reset the timer
 export const resetTimer = (
   setBreakLength,
   setSessionLength,
@@ -55,9 +55,11 @@ export const handleBreakIncrement = (
   setBreakLength,
   isRunning
 ) => {
-  if (!isRunning) {
+  if (!isRunning && breakLength < 60) {
     // Only update when timer is not running
-    setBreakLength((prev) => validateLength(prev + 1));
+    // setBreakLength((prev) => validateLength(prev + 1));
+    const newBreakLength = validateLength(breakLength + 1);
+    setBreakLength(newBreakLength);
   }
 };
 export const handleBreakDecrement = (
@@ -65,9 +67,11 @@ export const handleBreakDecrement = (
   setBreakLength,
   isRunning
 ) => {
-  if (!isRunning) {
+  if (!isRunning && breakLength > 1) {
     // Only update when timer is not running
-    setBreakLength((prev) => validateLength(prev - 1));
+    // setBreakLength((prev) => validateLength(prev - 1));
+    const newBreakLength = validateLength(breakLength - 1);
+    setBreakLength(newBreakLength);
   }
 };
 
@@ -76,14 +80,18 @@ export const handleSessionIncrement = (
   sessionLength,
   setSessionLength,
   isRunning,
-  setTimeLeft
+  setTimeLeft,
+  timerLabel
 ) => {
-  if (!isRunning) {
+  if (!isRunning && sessionLength < 60) {
     // Increment session length (max:60)
     const newSessionLength = validateLength(sessionLength + 1);
     setSessionLength(newSessionLength);
-    // Only update timeLeft when the timer is not running.
-    setTimeLeft(newSessionLength * 60);
+
+    if (timerLabel === "Session") {
+      // Only update timeLeft when the timer is not running.
+      setTimeLeft(newSessionLength * 60);
+    }
   }
 };
 
@@ -91,13 +99,17 @@ export const handleSessionDecrement = (
   sessionLength,
   setSessionLength,
   isRunning,
-  setTimeLeft
+  setTimeLeft,
+  timerLabel
 ) => {
-  if (!isRunning) {
+  if (!isRunning && sessionLength > 1) {
     // Decrement session length (min:1)
     const newSessionLength = validateLength(sessionLength - 1);
     setSessionLength(newSessionLength);
-    // Only update timeLeft when the timer is not running.
-    setTimeLeft(newSessionLength * 60);
+
+    if (timerLabel === "Session") {
+      // Only update timeLeft when the timer is not running.
+      setTimeLeft(newSessionLength * 60);
+    }
   }
 };

@@ -67,8 +67,9 @@ const Pomodoro = () => {
   }, [isRunning, memoizedSwitchTimer]); // Re-run effect when isRunning and memoizedSwitchTimer changes
 
   // Calculate percentage for Circular Progress Bar
-  const percentage =
-    ((sessionLength * 60 - timeLeft) / (sessionLength * 60)) * 100;
+  const totalTime =
+    timerLabel === "Session" ? sessionLength * 60 : breakLength * 60;
+  const percentage = ((totalTime - timeLeft) / totalTime) * 100;
 
   return (
     <div className="pomodoro bg-ivory w-full max-w-2xl rounded p-5 shadow-4xl ">
@@ -108,6 +109,13 @@ const Pomodoro = () => {
           onDecrement={() =>
             handleBreakDecrement(breakLength, setBreakLength, isRunning)
           }
+          onSetLength={(newLength) => {
+            setBreakLength(newLength);
+            if (!isRunning && timerLabel === "Break") {
+              setTimeLeft(newLength * 60);
+            }
+          }}
+          isRunning={isRunning}
         />
         {/* Session length controls */}
         <LengthControls
@@ -118,7 +126,8 @@ const Pomodoro = () => {
               sessionLength,
               setSessionLength,
               isRunning,
-              setTimeLeft
+              setTimeLeft,
+              timerLabel
             )
           }
           onDecrement={() =>
@@ -126,16 +135,21 @@ const Pomodoro = () => {
               sessionLength,
               setSessionLength,
               isRunning,
-              setTimeLeft
+              setTimeLeft,
+              timerLabel
             )
           }
+          onSetLength={(newLength) => {
+            setSessionLength(newLength);
+            if (!isRunning && timerLabel === "Session") {
+              setTimeLeft(newLength * 60);
+            }
+          }}
+          isRunning={isRunning}
         />
 
         <audio src={beepSound} id="beep" ref={audioRef}></audio>
       </div>
-
-      {/* Add CircularProgressBar Component */}
-      <div className=""></div>
     </div>
   );
 };
