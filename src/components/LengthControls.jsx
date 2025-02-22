@@ -68,7 +68,7 @@ const LengthControls = ({
         <button
           id={`${label.toLowerCase()}-decrement`}
           onClick={onDecrement}
-          className="outline-none hover:text-ivory"
+          className="outline-none hover:text-ivory active:text-ivory"
         >
           <FontAwesomeIcon icon={faCaretDown} />
         </button>
@@ -86,7 +86,7 @@ const LengthControls = ({
         <button
           id={`${label.toLowerCase()}-increment`}
           onClick={onIncrement}
-          className="outline-none hover:text-ivory"
+          className="outline-none hover:text-ivory active:text-ivory"
         >
           <FontAwesomeIcon icon={faCaretUp} />
         </button>
