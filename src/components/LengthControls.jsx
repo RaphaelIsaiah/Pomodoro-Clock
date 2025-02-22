@@ -13,7 +13,6 @@ const LengthControls = ({
   isRunning,
 }) => {
   const [inputValue, setInputValue] = useState(length.toString());
-  // const intervalIdRef = useRef(null);
 
   // Sync inputValue with length when it changes in parent
   useEffect(() => {
@@ -72,6 +71,7 @@ const LengthControls = ({
         >
           <FontAwesomeIcon icon={faCaretDown} />
         </button>
+
         <input
           id={`${label.toLowerCase()}-length`}
           type="text"
@@ -83,6 +83,7 @@ const LengthControls = ({
           font-two font-bold caret-ivory"
           disabled={isRunning}
         />
+
         <button
           id={`${label.toLowerCase()}-increment`}
           onClick={onIncrement}
