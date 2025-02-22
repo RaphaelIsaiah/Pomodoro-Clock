@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const TimerControls = ({ onStartStop, onReset, isRunning }) => {
   return (
     <div className="p-1 flex gap-4 justify-center ">
-      
       <button
         id="reset"
         onClick={onReset}
